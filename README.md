@@ -8,6 +8,10 @@
 ```
 
 ```objective-c
+@interface MyClass () <PBJNetworkObserverProtocol>
+```
+
+```objective-c
 
 // add observer on init or viewDidAppear
     [[PBJNetworkObserver sharedNetworkObserver] addNetworkReachableObserver:self];
