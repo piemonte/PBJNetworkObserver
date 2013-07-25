@@ -1,11 +1,9 @@
 ## PBJNetworkObserver
 'PBJNetworkObserver' is an iOS component for detecting network reachability changes as well as the network connection type.
 
-Mobile devices are always moving through connectivity challenged environments and various types of networks.
+Mobile devices are always moving through connectivity challenged environments made up of various types of networks. This class enables applications to monitor these network changes and set opportunities to refresh, cache, or provide feedback when they occur.
 
-This class enables an iOS application to monitor these network changes and provide the opportunity to refresh, cache, or provide feedback when a connection is established or even lost.
-
-Observers are notified when a network is no longer reachable, the network becomes reachable, and when the network changes.
+Observers are notified when a network is no longer reachable, the network becomes reachable, and when the network type changes.
 
 ### Basic Use
 
