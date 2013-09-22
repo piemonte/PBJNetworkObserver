@@ -5,7 +5,17 @@ Mobile devices are always moving through connectivity challenged environments ma
 
 Observers are notified when a network is no longer reachable, the network becomes reachable, and when the network type changes.
 
-### Basic Use
+## Installation
+
+[CocoaPods](http://cocoapods.org) is the recommended method of installing PBJNetworkObserver, just add the following line to your `Podfile`:
+
+#### Podfile
+
+```ruby
+pod 'PBJNetworkObserver'
+```
+
+## Usage
 
 ```objective-c
 #import "PBJNetworkObserver.h"
