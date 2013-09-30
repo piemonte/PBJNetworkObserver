@@ -7,7 +7,7 @@
 PRODUCT_NAME = NetworkObserver
 WRAPPER_EXTENSION = app
 
-ARCHS[sdk=iphoneos*] = $(ARCHS_UNIVERSAL_IPHONE_OS)
+ARCHS[sdk=iphoneos*] = $(ARCHS_STANDARD_INCLUDING_64_BIT)
 
 SKIP_INSTALL = NO
 
