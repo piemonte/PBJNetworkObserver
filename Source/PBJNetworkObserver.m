@@ -10,6 +10,13 @@
 #import <SystemConfiguration/SystemConfiguration.h>
 #import <netinet/in.h> // internet address ints
 
+#define LOG_NETWORK 0
+#if !defined(NDEBUG) && LOG_NETWORK
+#   define DLog(fmt, ...) NSLog((@"network: " fmt), ##__VA_ARGS__);
+#else
+#   define DLog(...)
+#endif
+
 @interface PBJNetworkObserver ()
 {
     dispatch_queue_t _queue;
@@ -45,6 +52,10 @@
 
 - (BOOL)isNetworkReachable
 {
+#if TARGET_IPHONE_SIMULATOR
+    return YES;
+#endif
+
     __block BOOL result = NO;
     dispatch_sync(_queue, ^{
         if (!_observers)
@@ -156,12 +167,16 @@ static void networkReachabilityCallBack(SCNetworkReachabilityRef target, SCNetwo
     // update cellular connection type, this is regardless of network reachability
     _flags.cellularConnection = (unsigned int)((flags & kSCNetworkReachabilityFlagsIsWWAN) != 0);
     
+    DLog(@"updated cellular %d", _flags.cellularConnection);
+    
     // update network reachability state change
     for (NSUInteger i = 0; i < 2; i++) {
 
         if ( !_flags.networkObserversNotified || (reachable[i] != _flags.networkReachable) ) {
             _flags.networkObserversNotified = YES;
             _flags.networkReachable = (unsigned int)reachable[i];
+
+            DLog(@"notifying reachable %d", _flags.networkReachable);
 
             for (id observer in [_observers allObjects])
                 [observer networkObserverReachabilityDidChange:self];
