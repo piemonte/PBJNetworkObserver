@@ -52,10 +52,6 @@
 
 - (BOOL)isNetworkReachable
 {
-#if TARGET_IPHONE_SIMULATOR
-    return YES;
-#endif
-
     __block BOOL result = NO;
     dispatch_sync(_queue, ^{
         if (!_observers)
@@ -123,7 +119,6 @@
         _observers = [NSHashTable weakObjectsHashTable];
 
     struct sockaddr_in addr = {sizeof(addr), AF_INET, 0, {htonl(INADDR_ANY)}, {0}};
-    
     _networkReachability = SCNetworkReachabilityCreateWithAddress(kCFAllocatorDefault, (const struct sockaddr*)&addr);
     
     SCNetworkReachabilityGetFlags(_networkReachability, &_networkReachabilityFlags);
@@ -136,7 +131,9 @@
 
     NSData *data = [NSData dataWithBytes:&_networkReachability length:sizeof(_networkReachability)];
     dispatch_async(dispatch_get_main_queue(), ^{
-        [self _networkReachableCallBack:*((SCNetworkReachabilityFlags *)[data bytes])];
+        DLog(@"initial reachable (%d) cell (%d)", _flags.networkReachable, _flags.cellularConnection);
+        
+        [self _networkReachableHandler:*((SCNetworkReachabilityFlags *)[data bytes])];
         SCNetworkReachabilityScheduleWithRunLoop(_networkReachability, CFRunLoopGetMain(), kCFRunLoopCommonModes);
     });
 }
@@ -145,15 +142,18 @@
 
 // SCNetworkReachabilityCallBack --> _networkReachableCallBack
 static void networkReachabilityCallBack(SCNetworkReachabilityRef target, SCNetworkReachabilityFlags flags, PBJNetworkObserver *me) {
-    [me _networkReachableCallBack:flags];
+    [me _networkReachableHandler:flags];
 }
 
-- (void)_networkReachableCallBack:(SCNetworkReachabilityFlags)flags
+- (void)_networkReachableHandler:(SCNetworkReachabilityFlags)flags
 {
-    BOOL reachable[2] = {NO, NO};
+    DLog(@"callback reachable (%d) cell (%d)", ((flags & kSCNetworkReachabilityFlagsReachable) != 0), ((flags & kSCNetworkReachabilityFlagsIsWWAN) != 0));
+
     BOOL currentReachable = (flags & kSCNetworkReachabilityFlagsReachable) != 0;
     BOOL previousReachable = (_networkReachabilityFlags & kSCNetworkReachabilityFlagsReachable) != 0;
-    
+
+    // determine if state has changed
+    BOOL reachable[2] = {NO, NO};
     if (currentReachable && previousReachable){
         reachable[0] = NO;
         reachable[1] = currentReachable;
@@ -162,22 +162,20 @@ static void networkReachabilityCallBack(SCNetworkReachabilityRef target, SCNetwo
         reachable[1] = NO;
     }
     
+    // update reachable flags
     _networkReachabilityFlags = flags;
     
-    // update cellular connection type, this is regardless of network reachability
-    _flags.cellularConnection = (unsigned int)((flags & kSCNetworkReachabilityFlagsIsWWAN) != 0);
+    // update cellular connection type, this is regardless of network reachability changes
+    _flags.cellularConnection = ((_networkReachabilityFlags & kSCNetworkReachabilityFlagsIsWWAN) != 0);
     
-    DLog(@"updated cellular %d", _flags.cellularConnection);
-    
-    // update network reachability state change
+    // update and notify network reachability change
     for (NSUInteger i = 0; i < 2; i++) {
 
         if ( !_flags.networkObserversNotified || (reachable[i] != _flags.networkReachable) ) {
             _flags.networkObserversNotified = YES;
             _flags.networkReachable = (unsigned int)reachable[i];
-
-            DLog(@"notifying reachable %d", _flags.networkReachable);
-
+            
+            DLog(@"notifying reachable (%d) cell (%d)", _flags.networkReachable, _flags.cellularConnection);
             for (id observer in [_observers allObjects])
                 [observer networkObserverReachabilityDidChange:self];
         }
