@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "PBJNetworkObserver"
-  s.version      = "0.1.1"
+  s.version      = "0.1.2"
   s.summary      = "iOS component for monitoring network reachability changes and connection type."
   s.homepage     = "https://github.com/piemonte/PBJNetworkObserver"
   s.license      = "MIT"
