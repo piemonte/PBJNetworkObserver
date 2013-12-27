@@ -3,6 +3,8 @@
 
 Mobile devices are always moving through connectivity challenged environments made up of various types of networks. This class enables applications to monitor these network changes and set opportunities to refresh, cache, or provide feedback when they occur.
 
+For example, auto-refresh can be performed for the current view if the device joins a WiFi network or higher quality data can be requested to update the current view content.
+
 Observers are notified when a network is no longer reachable, the network becomes reachable, and when the network type changes.
 
 ## Installation
