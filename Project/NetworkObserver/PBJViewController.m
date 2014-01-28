@@ -34,7 +34,7 @@
     // network status changed, these properties can also be queried directly from the singleton
     BOOL isNetworkReachable = [networkObserver isNetworkReachable];
     BOOL isCellularConnection = [networkObserver isCellularConnection];
-    NSLog(@"network status changed reachable (%d),  cellular (%d)", isNetworkReachable, isCellularConnection);
+    NSLog(@"network status changed reachable (%d), cellular (%d)", isNetworkReachable, isCellularConnection);
 }
 
 @end
