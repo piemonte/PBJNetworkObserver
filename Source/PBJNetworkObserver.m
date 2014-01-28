@@ -21,8 +21,6 @@
 {
     dispatch_queue_t _queue;
     NSHashTable *_observers;
-    
-    NSMutableArray *_states;
 
     SCNetworkReachabilityRef _networkReachability;
     SCNetworkReachabilityFlags _networkReachabilityFlags;
@@ -85,7 +83,6 @@
     self = [super init];
     if (self) {
         _queue = dispatch_queue_create("PBJNetworkObserver", DISPATCH_QUEUE_SERIAL);
-        _states = [[NSMutableArray alloc] initWithCapacity:2];
     }
     return self;
 }
@@ -127,13 +124,13 @@
     
     SCNetworkReachabilityGetFlags(_networkReachability, &_networkReachabilityFlags);
     
-    _flags.networkReachable = (_networkReachabilityFlags & kSCNetworkReachabilityFlagsReachable) != 0;
-    _flags.cellularConnection = (_networkReachabilityFlags & kSCNetworkReachabilityFlagsIsWWAN) != 0;
+    _flags.networkReachable = ((_networkReachabilityFlags & kSCNetworkReachabilityFlagsReachable) != 0);
+    _flags.cellularConnection = ((_networkReachabilityFlags & kSCNetworkReachabilityFlagsIsWWAN) != 0);
     
     SCNetworkReachabilityContext context = {0, (__bridge void *)(self), NULL, NULL, NULL};
     SCNetworkReachabilitySetCallback(_networkReachability, (SCNetworkReachabilityCallBack)networkReachabilityCallBack, &context);
 
-    NSData *data = [NSData dataWithBytes:&_networkReachability length:sizeof(_networkReachability)];
+    NSData *data = [NSData dataWithBytes:&_networkReachabilityFlags length:sizeof(_networkReachabilityFlags)];
     dispatch_async(dispatch_get_main_queue(), ^{
         DLog(@"initial reachable (%d) cellular (%d)", _flags.networkReachable, _flags.cellularConnection);
         [self _networkReachability:_networkReachability updatedWithFlags:*((SCNetworkReachabilityFlags *)[data bytes])];
@@ -150,33 +147,35 @@ static void networkReachabilityCallBack(SCNetworkReachabilityRef networkReachabi
 
 - (void)_networkReachability:(SCNetworkReachabilityRef)networkReachability updatedWithFlags:(SCNetworkReachabilityFlags)flags
 {
-    DLog(@"previous reachable (%d) cellular (%d)", _flags.networkReachable, _flags.cellularConnection);
+    // ensure this reachability ref is being used
+    if (networkReachability != _networkReachability)
+        return;
 
-    // determine change
-    [_states removeAllObjects];
+    DLog(@"handler reachable (%d) cellular (%d)", ((flags & kSCNetworkReachabilityFlagsReachable) != 0), ((flags & kSCNetworkReachabilityFlagsIsWWAN) != 0) );
 
+    // determine state
+    BOOL reachable[2] = {0, 0};
+    size_t count = 0;
+    
     BOOL currentReachable = (flags & kSCNetworkReachabilityFlagsReachable) != 0;
     BOOL previousReachable = (_networkReachabilityFlags & kSCNetworkReachabilityFlagsReachable) != 0;
     if (currentReachable && previousReachable) {
-        [_states addObject:@(NO)];
+        reachable[count++] = NO;
     }
-    [_states addObject:@(currentReachable)];
+    reachable[count++] = currentReachable;
     
     // update state
     _networkReachabilityFlags = flags;
-    _flags.cellularConnection = (_networkReachabilityFlags & kSCNetworkReachabilityFlagsIsWWAN) != 0;
+    _flags.cellularConnection = ((_networkReachabilityFlags & kSCNetworkReachabilityFlagsIsWWAN) != 0);
     
-    DLog(@"current reachable (%d) cellular (%d)", _flags.networkReachable, _flags.cellularConnection);
-    
-    // update observers, if necessary
-    for (NSNumber *reachable in _states) {
-        BOOL reachableValue = [reachable boolValue];
-        BOOL changed = (reachableValue != _networkReachabilityFlags);
+    // notify, if necessary
+    for (size_t i = 0; i < count; i++) {
+        BOOL changed = reachable[i] != _flags.networkReachable;
         if (changed || !_flags.networkObserversNotified) {
             
             _flags.networkObserversNotified = YES;
-            _networkReachabilityFlags = (SCNetworkReachabilityFlags)reachableValue;
-            
+            _flags.networkReachable = reachable[i];
+
             DLog(@"notifying reachable (%d) cellular (%d)", _flags.networkReachable, _flags.cellularConnection);
             
             for (id observer in [_observers allObjects])
