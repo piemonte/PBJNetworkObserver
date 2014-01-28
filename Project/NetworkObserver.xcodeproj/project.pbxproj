@@ -19,6 +19,9 @@
 		06E82133179DF36A0081AFE3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 06E82132179DF36A0081AFE3 /* main.m */; };
 		06E82137179DF36A0081AFE3 /* PBJAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 06E82136179DF36A0081AFE3 /* PBJAppDelegate.m */; };
 		06E8213D179DF36A0081AFE3 /* PBJViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06E8213C179DF36A0081AFE3 /* PBJViewController.m */; };
+		06FCBECB189771BC0039DB52 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 06FCBEC8189771BC0039DB52 /* Default-568h@2x.png */; };
+		06FCBECC189771BC0039DB52 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 06FCBEC9189771BC0039DB52 /* Default.png */; };
+		06FCBECD189771BC0039DB52 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 06FCBECA189771BC0039DB52 /* Default@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +43,9 @@
 		06E82136179DF36A0081AFE3 /* PBJAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBJAppDelegate.m; sourceTree = "<group>"; };
 		06E8213B179DF36A0081AFE3 /* PBJViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBJViewController.h; sourceTree = "<group>"; };
 		06E8213C179DF36A0081AFE3 /* PBJViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBJViewController.m; sourceTree = "<group>"; };
+		06FCBEC8189771BC0039DB52 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		06FCBEC9189771BC0039DB52 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		06FCBECA189771BC0039DB52 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +111,9 @@
 				060B9B68179DF44400E32103 /* Base.xcconfig */,
 				060B9B69179DF44400E32103 /* Debug.xcconfig */,
 				060B9B6A179DF44400E32103 /* Release.xcconfig */,
+				06FCBEC8189771BC0039DB52 /* Default-568h@2x.png */,
+				06FCBEC9189771BC0039DB52 /* Default.png */,
+				06FCBECA189771BC0039DB52 /* Default@2x.png */,
 				06E8212E179DF36A0081AFE3 /* NetworkObserver-Info.plist */,
 				06E82134179DF36A0081AFE3 /* NetworkObserver-Prefix.pch */,
 				06E8212F179DF36A0081AFE3 /* InfoPlist.strings */,
@@ -167,8 +176,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				060B9B6D179DF44400E32103 /* Release.xcconfig in Resources */,
+				06FCBECC189771BC0039DB52 /* Default.png in Resources */,
 				06E82131179DF36A0081AFE3 /* InfoPlist.strings in Resources */,
 				060B9B6B179DF44400E32103 /* Base.xcconfig in Resources */,
+				06FCBECB189771BC0039DB52 /* Default-568h@2x.png in Resources */,
+				06FCBECD189771BC0039DB52 /* Default@2x.png in Resources */,
 				060B9B6C179DF44400E32103 /* Debug.xcconfig in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
