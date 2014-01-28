@@ -164,6 +164,7 @@ static void networkReachabilityCallBack(SCNetworkReachabilityRef networkReachabi
     
     // update state
     _networkReachabilityFlags = flags;
+    _flags.cellularConnection = (_networkReachabilityFlags & kSCNetworkReachabilityFlagsIsWWAN) != 0;
     
     DLog(@"current reachable (%d) cellular (%d)", _flags.networkReachable, _flags.cellularConnection);
     
