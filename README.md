@@ -8,7 +8,7 @@ Some common uses include auto-refresh, logic that can be triggered for a view if
 
 Observers are notified when a network is no longer reachable, the network becomes reachable, and when the network interface type changes.
 
-If you have furthuer questions, [github issues](https://github.com/piemonte/PBJNetworkObserver/issues) is the ideal means to have a discussion, this allows others to benefit and chime in on the project too.
+If you have questions, [github issues](https://github.com/piemonte/PBJNetworkObserver/issues) is a great means to start a discussion, this allows others to benefit and chime in on the project too.
 
 ## Installation
 
