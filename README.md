@@ -1,5 +1,5 @@
 ## PBJNetworkObserver
-'PBJNetworkObserver' is an iOS component for detecting changes in network reachability state as well as connection type. For example, knowing when an IP is being routed through a Wireless Wide Area Network (WWAN) interface such as 3G or LTE.
+'PBJNetworkObserver' is an iOS component for detecting changes in network reachability state as well as connection type. For example, it can determine when an IP is being routed through a Wireless Wide Area Network (WWAN) interface such as 3G or LTE.
 
 Mobile devices are frequently moving through connectivity challenged environments made up of various network interfaces. This component enables apps to easily monitor these network changes and allow opportunities to refresh, cache, or even provide user interface feedback when they occur.
 
