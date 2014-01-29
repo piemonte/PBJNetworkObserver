@@ -48,4 +48,4 @@ pod 'PBJNetworkObserver'
 
 ## License
 
-PBJNetworkObserver is available under the MIT license, see the LICENSE file for more information.
+PBJNetworkObserver is available under the MIT license, see the [LICENSE](https://github.com/piemonte/PBJNetworkObserver/blob/master/LICENSE) file for more information.
