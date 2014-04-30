@@ -29,8 +29,8 @@
 		060B9B69179DF44400E32103 /* Debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = SOURCE_ROOT; };
 		060B9B6A179DF44400E32103 /* Release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = SOURCE_ROOT; };
 		063DF5DE179DFA8800DDD163 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		0662F7FF179DFBE3003391B6 /* PBJNetworkObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PBJNetworkObserver.h; path = ../Source/PBJNetworkObserver.h; sourceTree = "<group>"; };
-		0662F800179DFBE3003391B6 /* PBJNetworkObserver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PBJNetworkObserver.m; path = ../Source/PBJNetworkObserver.m; sourceTree = "<group>"; };
+		0662F7FF179DFBE3003391B6 /* PBJNetworkObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PBJNetworkObserver.h; path = ../../Source/PBJNetworkObserver.h; sourceTree = "<group>"; };
+		0662F800179DFBE3003391B6 /* PBJNetworkObserver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PBJNetworkObserver.m; path = ../../Source/PBJNetworkObserver.m; sourceTree = "<group>"; };
 		06E82123179DF36A0081AFE3 /* NetworkObserver.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NetworkObserver.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		06E82126179DF36A0081AFE3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		06E82128179DF36A0081AFE3 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -63,12 +63,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		06E8211A179DF36A0081AFE3 = {
+		06A835F5191076FC00A16181 /* NetworkObserver */ = {
 			isa = PBXGroup;
 			children = (
 				0662F7FF179DFBE3003391B6 /* PBJNetworkObserver.h */,
 				0662F800179DFBE3003391B6 /* PBJNetworkObserver.m */,
-				06E8212C179DF36A0081AFE3 /* NetworkObserver */,
+			);
+			path = NetworkObserver;
+			sourceTree = "<group>";
+		};
+		06E8211A179DF36A0081AFE3 = {
+			isa = PBXGroup;
+			children = (
+				06A835F5191076FC00A16181 /* NetworkObserver */,
+				06E8212C179DF36A0081AFE3 /* App */,
 				06E82125179DF36A0081AFE3 /* Frameworks */,
 				06E82124179DF36A0081AFE3 /* Products */,
 			);
@@ -93,7 +101,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		06E8212C179DF36A0081AFE3 /* NetworkObserver */ = {
+		06E8212C179DF36A0081AFE3 /* App */ = {
 			isa = PBXGroup;
 			children = (
 				06E82135179DF36A0081AFE3 /* PBJAppDelegate.h */,
@@ -102,6 +110,7 @@
 				06E8213C179DF36A0081AFE3 /* PBJViewController.m */,
 				06E8212D179DF36A0081AFE3 /* Supporting Files */,
 			);
+			name = App;
 			path = NetworkObserver;
 			sourceTree = "<group>";
 		};
