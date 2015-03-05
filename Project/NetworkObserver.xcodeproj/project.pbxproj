@@ -10,6 +10,7 @@
 		060B9B6B179DF44400E32103 /* Base.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 060B9B68179DF44400E32103 /* Base.xcconfig */; };
 		060B9B6C179DF44400E32103 /* Debug.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 060B9B69179DF44400E32103 /* Debug.xcconfig */; };
 		060B9B6D179DF44400E32103 /* Release.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 060B9B6A179DF44400E32103 /* Release.xcconfig */; };
+		06387E821AA8BB5D004D093A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 06387E811AA8BB5D004D093A /* Images.xcassets */; };
 		063DF5DF179DFA8800DDD163 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 063DF5DE179DFA8800DDD163 /* SystemConfiguration.framework */; };
 		0662F801179DFBE3003391B6 /* PBJNetworkObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = 0662F800179DFBE3003391B6 /* PBJNetworkObserver.m */; };
 		06E82127179DF36A0081AFE3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06E82126179DF36A0081AFE3 /* Foundation.framework */; };
@@ -19,15 +20,13 @@
 		06E82133179DF36A0081AFE3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 06E82132179DF36A0081AFE3 /* main.m */; };
 		06E82137179DF36A0081AFE3 /* PBJAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 06E82136179DF36A0081AFE3 /* PBJAppDelegate.m */; };
 		06E8213D179DF36A0081AFE3 /* PBJViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06E8213C179DF36A0081AFE3 /* PBJViewController.m */; };
-		06FCBECB189771BC0039DB52 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 06FCBEC8189771BC0039DB52 /* Default-568h@2x.png */; };
-		06FCBECC189771BC0039DB52 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 06FCBEC9189771BC0039DB52 /* Default.png */; };
-		06FCBECD189771BC0039DB52 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 06FCBECA189771BC0039DB52 /* Default@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		060B9B68179DF44400E32103 /* Base.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Base.xcconfig; sourceTree = SOURCE_ROOT; };
 		060B9B69179DF44400E32103 /* Debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = SOURCE_ROOT; };
 		060B9B6A179DF44400E32103 /* Release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = SOURCE_ROOT; };
+		06387E811AA8BB5D004D093A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		063DF5DE179DFA8800DDD163 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		0662F7FF179DFBE3003391B6 /* PBJNetworkObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PBJNetworkObserver.h; path = ../../Source/PBJNetworkObserver.h; sourceTree = "<group>"; };
 		0662F800179DFBE3003391B6 /* PBJNetworkObserver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PBJNetworkObserver.m; path = ../../Source/PBJNetworkObserver.m; sourceTree = "<group>"; };
@@ -43,9 +42,6 @@
 		06E82136179DF36A0081AFE3 /* PBJAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBJAppDelegate.m; sourceTree = "<group>"; };
 		06E8213B179DF36A0081AFE3 /* PBJViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBJViewController.h; sourceTree = "<group>"; };
 		06E8213C179DF36A0081AFE3 /* PBJViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBJViewController.m; sourceTree = "<group>"; };
-		06FCBEC8189771BC0039DB52 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		06FCBEC9189771BC0039DB52 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
-		06FCBECA189771BC0039DB52 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,12 +113,10 @@
 		06E8212D179DF36A0081AFE3 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				06387E811AA8BB5D004D093A /* Images.xcassets */,
 				060B9B68179DF44400E32103 /* Base.xcconfig */,
 				060B9B69179DF44400E32103 /* Debug.xcconfig */,
 				060B9B6A179DF44400E32103 /* Release.xcconfig */,
-				06FCBEC8189771BC0039DB52 /* Default-568h@2x.png */,
-				06FCBEC9189771BC0039DB52 /* Default.png */,
-				06FCBECA189771BC0039DB52 /* Default@2x.png */,
 				06E8212E179DF36A0081AFE3 /* NetworkObserver-Info.plist */,
 				06E82134179DF36A0081AFE3 /* NetworkObserver-Prefix.pch */,
 				06E8212F179DF36A0081AFE3 /* InfoPlist.strings */,
@@ -185,11 +179,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				060B9B6D179DF44400E32103 /* Release.xcconfig in Resources */,
-				06FCBECC189771BC0039DB52 /* Default.png in Resources */,
+				06387E821AA8BB5D004D093A /* Images.xcassets in Resources */,
 				06E82131179DF36A0081AFE3 /* InfoPlist.strings in Resources */,
 				060B9B6B179DF44400E32103 /* Base.xcconfig in Resources */,
-				06FCBECB189771BC0039DB52 /* Default-568h@2x.png in Resources */,
-				06FCBECD189771BC0039DB52 /* Default@2x.png in Resources */,
 				060B9B6C179DF44400E32103 /* Debug.xcconfig in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -243,6 +235,8 @@
 		06E82156179DF36A0081AFE3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = "$(SRCROOT)/NetworkObserver/NetworkObserver-Info.plist";
 			};
 			name = Debug;
@@ -250,6 +244,8 @@
 		06E82157179DF36A0081AFE3 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = "$(SRCROOT)/NetworkObserver/NetworkObserver-Info.plist";
 			};
 			name = Release;
