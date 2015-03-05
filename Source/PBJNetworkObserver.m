@@ -159,7 +159,9 @@
 
 // SCNetworkReachabilityCallBack ---> _networkReachability:updatedWithFlags:
 static void networkReachabilityCallBack(SCNetworkReachabilityRef networkReachability, SCNetworkReachabilityFlags flags, PBJNetworkObserver *me) {
-    [me _networkReachability:networkReachability updatedWithFlags:flags];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [me _networkReachability:networkReachability updatedWithFlags:flags];
+    });
 }
 
 - (void)_networkReachability:(SCNetworkReachabilityRef)networkReachability updatedWithFlags:(SCNetworkReachabilityFlags)flags
@@ -171,9 +173,8 @@ static void networkReachabilityCallBack(SCNetworkReachabilityRef networkReachabi
     DLog(@"handler reachable (%d) cellular (%d)", ((flags & kSCNetworkReachabilityFlagsReachable) != 0), ((flags & kSCNetworkReachabilityFlagsIsWWAN) != 0) );
 
     // determine state
-    BOOL reachable[2] = {0, 0};
+    BOOL reachable[2] = {NO, NO};
     size_t count = 0;
-    
     BOOL currentReachable = (flags & kSCNetworkReachabilityFlagsReachable) != 0;
     BOOL previousReachable = (_networkReachabilityFlags & kSCNetworkReachabilityFlagsReachable) != 0;
     if (currentReachable && previousReachable) {
@@ -183,7 +184,7 @@ static void networkReachabilityCallBack(SCNetworkReachabilityRef networkReachabi
     
     // update state
     _networkReachabilityFlags = flags;
-    _flags.cellularConnection = ((_networkReachabilityFlags & kSCNetworkReachabilityFlagsIsWWAN) != 0);
+    _flags.cellularConnection = (_networkReachabilityFlags & kSCNetworkReachabilityFlagsIsWWAN) != 0;
     
     // notify, if necessary
     for (size_t i = 0; i < count; i++) {
@@ -194,12 +195,12 @@ static void networkReachabilityCallBack(SCNetworkReachabilityRef networkReachabi
             _flags.networkReachable = reachable[i];
 
             DLog(@"notifying reachable (%d) cellular (%d)", _flags.networkReachable, _flags.cellularConnection);
-            
-            for (id observer in [_observers allObjects])
+            for (id observer in [_observers allObjects]) {
                 [observer networkObserverReachabilityDidChange:self];
+            }
         }
-
     }
+
 }
 
 @end
